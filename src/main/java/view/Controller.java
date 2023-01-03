@@ -1,4 +1,4 @@
-package com.example.outlaysmanager;
+package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

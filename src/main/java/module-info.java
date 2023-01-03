@@ -1,4 +1,4 @@
-module com.example.outlaysmanager {
+module view {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -6,6 +6,6 @@ module com.example.outlaysmanager {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.outlaysmanager to javafx.fxml;
-    exports com.example.outlaysmanager;
+    opens view to javafx.fxml;
+    exports view;
 }
