@@ -1,12 +1,37 @@
 package store;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.UUID;
 
 public class Record implements Serializable {
     String id;
+
+    public String getTitle() {
+        return title;
+    }
+
     String title;
     String description;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCost() {
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        return df.format(this.cost) + " " + "USD";
+    }
+
+    public Categories getCategory() {
+        return category;
+    }
+
     Float cost;
     Categories category;
 
@@ -26,6 +51,7 @@ public class Record implements Serializable {
         this.cost = cost;
         this.category = category;
     }
+
     @Override
     public String toString() {
         return  "id: " + this.id + "\n" +

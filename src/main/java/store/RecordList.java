@@ -11,6 +11,10 @@ public class RecordList {
     public RecordList(ArrayList<Record> records) {
         this.records = records;
     }
+
+    public RecordList(String fileName) {
+        readRecordsFrom(fileName);
+    }
     public ArrayList<Record> getRecords() {
         return this.records;
     }
@@ -52,5 +56,7 @@ public class RecordList {
             c.printStackTrace();
             return;
         }
+
+        printRecords();
     }
 }
