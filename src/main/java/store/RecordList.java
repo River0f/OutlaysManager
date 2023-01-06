@@ -2,6 +2,7 @@ package store;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RecordList {
     ArrayList<Record> records;
@@ -21,11 +22,18 @@ public class RecordList {
     public void addRecord(Record record) {
         this.records.add(record);
     }
+    public void deleteRecord(Record record) {
+        records.removeIf(item -> item.getId().equals(record.getId()));
+    }
 
     public void printRecords() {
         for (var record : this.records) {
             System.out.println(record);
         }
+    }
+
+    public void setRecords(ArrayList<Record> records) {
+        this.records = records;
     }
 
     public void writeRecordsTo(String fileName) {
@@ -56,7 +64,5 @@ public class RecordList {
             c.printStackTrace();
             return;
         }
-
-        printRecords();
     }
 }
