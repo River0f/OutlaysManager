@@ -1,7 +1,5 @@
 package view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
@@ -30,15 +28,8 @@ class ListCellFactory implements Callback<ListView<Record>, ListCell<Record>> {
 
                         controller.setTitle(record.getTitle());
                         controller.setDescription(record.getDescription());
-                        controller.setCost(record.getCost());
+                        controller.setCost(record.getFormatedCost());
                         controller.setCategory(record.getCategory());
-                        controller.setRecord(record);
-                        controller.deleteButton.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent actionEvent) {
-                                getListView().getItems().remove(getItem());
-                            }
-                        });
 
                         setGraphic(root);
                     } catch (IOException e) {

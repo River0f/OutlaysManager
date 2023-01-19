@@ -6,27 +6,30 @@ import java.util.UUID;
 
 public class Record implements Serializable {
     private String id;
+    private final String title;
+    private final String description;
+    private final Float cost;
+    private final Categories category;
+    public String getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }
-    private String title;
-    private String description;
-    public String getId() {
-        return id;
+    public Float getCost() {
+        return cost;
     }
     public String getDescription() {
         return description;
     }
-    public String getCost() {
+    public Categories getCategory() {
+        return category;
+    }
+    public String getFormatedCost() {
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
         return df.format(this.cost) + " " + "USD";
     }
-    public Categories getCategory() {
-        return category;
-    }
-    Float cost;
-    Categories category;
 
     public Record(String title, Float cost, Categories category) {
         super();

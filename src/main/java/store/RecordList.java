@@ -50,16 +50,26 @@ public class RecordList {
     }
     public void readRecordsFrom(String fileName) {
         try {
-            FileInputStream fis = new FileInputStream(fileName);
+            File recordsFile = new File(fileName);
+            recordsFile.createNewFile();
+            FileInputStream fis = new FileInputStream(recordsFile);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             this.records = (ArrayList<Record>) ois.readObject();
             ois.close();
             fis.close();
-        } catch (IOException ioe) {
+        }
+        catch (EOFException eof) {
+            System.out.println("End of file");
+        }
+        catch (FileNotFoundException fnf) {
+            System.out.println("File not found");
+        }
+        catch (IOException ioe) {
             ioe.printStackTrace();
             return;
-        } catch (ClassNotFoundException c) {
+        }
+        catch (ClassNotFoundException c) {
             System.out.println("Class not found");
             c.printStackTrace();
             return;

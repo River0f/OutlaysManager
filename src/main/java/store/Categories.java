@@ -1,7 +1,7 @@
 package store;
 
 public enum Categories {
-    HOME("home"), FOOD("food"), TRAVEL("travel"), OTHER("other");
+   HOME("home"), FOOD("food"), TRAVEL("travel"), OTHER("other");
 
     public String getCategoryName() {
         return categoryName;
