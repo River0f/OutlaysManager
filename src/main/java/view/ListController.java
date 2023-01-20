@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -139,6 +140,12 @@ public class ListController implements Initializable {
         dateFilter.getItems().addAll(new String[]{"today", "last 3 days", "last week", "last month", "last year"});
 
         dateFilter.setValue(dateFilter.getItems().get(0));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                filterRecords();
+            }
+        });
 
         categoryFilter.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observableValue, s, t1) -> {
             filterRecords();
