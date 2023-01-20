@@ -50,9 +50,7 @@ public class RecordList {
     }
     public void readRecordsFrom(String fileName) {
         try {
-            File recordsFile = new File(fileName);
-            recordsFile.createNewFile();
-            FileInputStream fis = new FileInputStream(recordsFile);
+            FileInputStream fis = new FileInputStream(fileName);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             this.records = (ArrayList<Record>) ois.readObject();
@@ -64,6 +62,14 @@ public class RecordList {
         }
         catch (FileNotFoundException fnf) {
             System.out.println("File not found");
+            File recordsFile = new File(fileName);
+
+            try{
+                recordsFile.createNewFile();
+            }catch (IOException eof) {
+                System.out.println("Failed to create file");
+            }
+
         }
         catch (IOException ioe) {
             ioe.printStackTrace();

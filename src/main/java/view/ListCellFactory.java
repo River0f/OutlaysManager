@@ -30,6 +30,7 @@ class ListCellFactory implements Callback<ListView<Record>, ListCell<Record>> {
                         controller.setDescription(record.getDescription());
                         controller.setCost(record.getFormatedCost());
                         controller.setCategory(record.getCategory());
+                        controller.setDate(record.getDate());
 
                         setGraphic(root);
                     } catch (IOException e) {

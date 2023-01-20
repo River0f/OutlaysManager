@@ -20,6 +20,8 @@ import store.RecordList;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListCellController implements Initializable {
@@ -38,6 +40,8 @@ public class ListCellController implements Initializable {
     public Text descriptionText;
     @FXML
     public Text costText;
+    @FXML
+    public Text dateText;
     @FXML
     public Text categoryText;
     @FXML
@@ -63,6 +67,12 @@ public class ListCellController implements Initializable {
     public void setCategory(Categories categoryText) {
         this.categoryText.setText(categoryText.getCategoryName());
     }
+
+    public void setDate(LocalDate date) {
+        this.dateText.setText(date.toString());
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
