@@ -14,22 +14,21 @@ import store.Categories;
 import store.Record;
 
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RecordFormController implements Initializable {
     @FXML
     private TextField cost;
     @FXML
-    private ChoiceBox categorySelect;
+    private ChoiceBox<String> categorySelect;
     @FXML
     private TextField title;
     @FXML
     private TextArea description;
 
-    private ObservableList mainRecordList;
+    private ObservableList<Record> mainRecordList;
 
-    public void setMainRecordList(ObservableList mainRecordList) {
+    public void setMainRecordList(ObservableList<Record> mainRecordList) {
         this.mainRecordList = mainRecordList;
     }
 
@@ -37,7 +36,7 @@ public class RecordFormController implements Initializable {
         String titleText = title.getText().trim();
         String descriptionText = description.getText().trim();
         String costText = cost.getText().trim();
-        String category = (String) categorySelect.getValue();
+        String category = categorySelect.getValue();
         try {
             Float costValue = Float.valueOf(costText);
 

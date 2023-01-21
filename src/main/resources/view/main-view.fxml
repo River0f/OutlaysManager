@@ -11,35 +11,33 @@
     </center>
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" text="Add record" />
-            <Button mnemonicParsing="false" onAction="#deleteRecord" text="Delete record" />
-         </children>
          <BorderPane.margin>
-            <Insets />
+            <Insets/>
          </BorderPane.margin>
          <padding>
-            <Insets right="20.0" />
+            <Insets right="20.0"/>
          </padding>
+         <Button fx:id="addRecordButton" mnemonicParsing="false" onAction="#addRecord" text="Add record"/>
+         <Button mnemonicParsing="false" onAction="#deleteRecord" text="Delete record"/>
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER_RIGHT">
-         <children>
-            <Label text="Filter by category: " />
-            <ChoiceBox fx:id="categoryFilter" prefWidth="150.0">
-               <opaqueInsets>
-                  <Insets right="20.0" />
-               </opaqueInsets></ChoiceBox>
-            <Label text="Since:" />
-            <ChoiceBox fx:id="dateFilter" prefWidth="150.0" />
-         </children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="600.0" spacing="20.0"
+            BorderPane.alignment="CENTER_RIGHT">
          <opaqueInsets>
-            <Insets />
+            <Insets/>
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets right="20.0" />
+            <Insets right="20.0"/>
          </BorderPane.margin>
+         <Label text="Filter by category: "/>
+         <ChoiceBox fx:id="categoryFilter" prefWidth="150.0">
+            <opaqueInsets>
+               <Insets right="20.0"/>
+            </opaqueInsets>
+         </ChoiceBox>
+         <Label text="Since:"/>
+         <ChoiceBox fx:id="dateFilter" prefWidth="150.0"/>
       </HBox>
    </top>
    <left>

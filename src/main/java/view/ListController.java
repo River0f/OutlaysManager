@@ -1,12 +1,10 @@
 package view;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,13 +18,11 @@ import javafx.stage.Stage;
 import store.Categories;
 import store.Record;
 import store.RecordList;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ListController implements Initializable {
@@ -34,9 +30,9 @@ public class ListController implements Initializable {
     @FXML
     public Button addRecordButton;
     @FXML
-    public ChoiceBox categoryFilter = new ChoiceBox<>();
+    public ChoiceBox<String> categoryFilter = new ChoiceBox<>();
     @FXML
-    public ChoiceBox dateFilter = new ChoiceBox<>();
+    public ChoiceBox<String> dateFilter = new ChoiceBox<>();
     @FXML
     public PieChart recordsChart;
     @FXML
@@ -73,7 +69,7 @@ public class ListController implements Initializable {
 
     private boolean checkRecordDate (Record record) {
         LocalDate date = record.getDate();
-        switch (dateFilter.getValue().toString()) {
+        switch (dateFilter.getValue()) {
             case "today" -> {
                 return LocalDate.now().equals(date);
             }
@@ -116,14 +112,11 @@ public class ListController implements Initializable {
 
         updateRecordChart();
 
-        recordList.addListener(new ListChangeListener<Record>() {
-            @Override
-            public void onChanged(Change<? extends Record> change) {
-                ArrayList<Record> current = new ArrayList<Record>(recordList.stream().toList());
-                records.setRecords(current);
-                records.writeRecordsTo("records.rec");
-                updateRecordChart();
-            }
+        recordList.addListener((ListChangeListener<Record>) change -> {
+            ArrayList<Record> current = new ArrayList<>(recordList.stream().toList());
+            records.setRecords(current);
+            records.writeRecordsTo("records.rec");
+            updateRecordChart();
         });
 
         filteredRecordList.addListener((ListChangeListener<Record>) change -> {
@@ -137,21 +130,16 @@ public class ListController implements Initializable {
         }
         categoryFilter.setValue(categoryFilter.getItems().get(0));
 
-        dateFilter.getItems().addAll(new String[]{"today", "last 3 days", "last week", "last month", "last year"});
+        dateFilter.getItems().addAll("today", "last 3 days", "last week", "last month", "last year");
 
         dateFilter.setValue(dateFilter.getItems().get(0));
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                filterRecords();
-            }
-        });
+        Platform.runLater(this::filterRecords);
 
-        categoryFilter.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observableValue, s, t1) -> {
+        categoryFilter.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             filterRecords();
         });
 
-        dateFilter.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observableValue, s, t1) -> {
+        dateFilter.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             filterRecords();
         });
 
@@ -172,8 +160,7 @@ public class ListController implements Initializable {
         stage.showAndWait();
 
     }
-
-    public void deleteRecord(ActionEvent actionEvent) {
+    public void deleteRecord() {
         recordList.remove( recordListView.getSelectionModel().getSelectedIndex());
     }
 }
